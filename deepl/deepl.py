@@ -136,10 +136,10 @@ class DeepLCLI:
 
             url = "https://www.deepl.com/en/translator"
             if self.use_dom_submit:
-                await page.goto(url)
+                await page.goto(url, wait_until="domcontentloaded")
             else:
                 script = quote(script, safe="")
-                await page.goto(f"{url}#{self.fr_lang}/{self.to_lang}/{script}")
+                await page.goto(f"{url}#{self.fr_lang}/{self.to_lang}/{script}", wait_until="domcontentloaded")
 
             # Wait for loading to complete
             try:
